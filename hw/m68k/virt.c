@@ -19,6 +19,7 @@
 #include "hw/loader.h"
 #include "ui/console.h"
 #include "hw/sysbus.h"
+#include "hw/display/ramfb.h"
 #include "standard-headers/asm-m68k/bootinfo.h"
 #include "standard-headers/asm-m68k/bootinfo-virt.h"
 #include "bootinfo.h"
@@ -426,6 +427,8 @@ static void virt_machine_class_init(ObjectClass *oc, void *data)
     mc->no_floppy = 1;
     mc->no_parallel = 1;
     mc->default_ram_id = "m68k_virt.ram";
+
+    machine_class_allow_dynamic_sysbus_dev(mc, TYPE_RAMFB_DEVICE);
 }
 
 static const TypeInfo virt_machine_info = {
